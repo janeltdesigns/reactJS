@@ -7,9 +7,17 @@ module.exports = {
     entry: ['./app/index.js'],
     output: {
         path: path.join(__dirname, 'build'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        chunkFilename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    optimization: {
+            splitChunks: {
+            chunks: 'all'
+            }
     },
     module: {
+        mode: 'development',
         rules: [
             {
                 test: /\.js$/,
@@ -18,6 +26,10 @@ module.exports = {
                 use: [{
                     loader:'babel-loader',
                   }],
+                test: /\.bundle\.js$/,
+                  use: [{
+                      loader:'bundle-loader',
+                }],
             },
         ]
     }

@@ -24,6 +24,4 @@ export default function App(props) {
             </Switch>
         </div>
     )
-}
-
-export default App;
+};
